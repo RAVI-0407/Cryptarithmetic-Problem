@@ -1,5 +1,5 @@
 <h1>ExpNo 8 : Solve Cryptarithmetic Problem,a CSP(Constraint Satisfaction Problem) using Python</h1> 
-<h3>Name: RAVIPRASATH K  </h3>
+<h3>Name: RAVIPRASATH K </h3>
 <h3>Register Number: 212224230225   </h3>
 <H3>Aim:</H3>
 <p>
@@ -45,3 +45,77 @@ Begin<br>
 
    m := 1<br>
    for each letter i from right to left of word2, do<br>
+      ch := word2[i]<br>
+      for all elements j in the nodeList, do<br>
+         if nodeList[j].letter = ch, then<br>
+            break<br>
+      done<br>
+
+      val2 := val2 + (m * nodeList[j].value)
+      m := m * 10
+   done<br>
+
+   m := 1<br>
+   for each letter i from right to left of word3, do<br>
+      ch := word3[i]<br>
+      for all elements j in the nodeList, do<br>
+         if nodeList[j].letter = ch, then<br>
+            break<br>
+      done<br>
+
+      val3 := val3 + (m * nodeList[j].value)
+      m := m * 10
+   done<br>
+
+   if val3 = (val1 + val2), then<br>
+      return true<br>
+   return false<br>
+End<br>
+<hr>
+<h2>Sample Input and Output:</h2>
+SEND = 9567<br>
+MORE = 1085<br>
+<hr>
+MONEY = 10652<br>
+<hr>
+
+PROGRAM:
+```
+from itertools import permutations
+
+def solve_cryptarithmetic():
+    for perm in permutations(range(10), 8):
+        S, E, N, D, M, O, R, Y = perm
+
+        # Check for leading zeros
+        if S == 0 or M == 0:
+            continue
+
+        # Check the equation constraints
+        SEND = 1000 * S + 100 * E + 10 * N + D
+        MORE = 1000 * M + 100 * O + 10 * R + E
+        MONEY = 10000 * M + 1000 * O + 100 * N + 10 * E + Y
+
+        if SEND + MORE == MONEY:
+            return SEND, MORE, MONEY
+
+    return None
+
+# Call the function
+solution = solve_cryptarithmetic()
+
+if solution:
+    SEND, MORE, MONEY = solution
+    print(f'SEND = {SEND}')
+    print(f'MORE = {MORE}')
+    print(f'MONEY = {MONEY}')
+else:
+    print("No solution found.")
+```
+ OUTPUT:
+ 
+<img width="824" height="323" alt="image" src="https://github.com/user-attachments/assets/a285dc52-fbc4-4217-b726-172f6bb65bc0" />
+
+
+<h2>Result:</h2>
+<p> Thus a Cryptarithmetic Problem was solved using Python successfully</p>
